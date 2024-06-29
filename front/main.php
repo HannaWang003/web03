@@ -182,7 +182,7 @@
         .movies {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -195,11 +195,6 @@
             border-radius: 5px;
             display: flex;
             flex-wrap: wrap;
-        }
-
-        .movies a {
-            text-decoration: none;
-            color: #fff;
         }
         </style>
         <div class="movies">
@@ -227,15 +222,15 @@
             <?php
             }
             ?>
-            <div class="ct">
-                <?php
-for($i=1;$i<=$pages;$i++){
-    ?>
-                <a href="?do=main&p=<?=$i?>"><?=$i?></a>
-                <?php
-}
-                ?>
-            </div>
+        </div>
+        <div class="ct">
+            <?php
+            for ($i = 1; $i <= $pages; $i++) {
+            ?>
+            <a href="?do=main&p=<?= $i ?>" style="color:#fff;text-decoration:none"><?= $i ?></a>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>
