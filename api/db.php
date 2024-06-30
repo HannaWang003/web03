@@ -115,5 +115,5 @@ $sess = [
     5 => "22:00~24:00",
 ];
 $Movie = new DB('movie');
-$Order = new DB('ord');
+$Order = new DB('orders');
 $Poster = new DB('poster');
