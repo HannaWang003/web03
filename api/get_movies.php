@@ -5,6 +5,6 @@ $ondate = date("Y-m-d", strtotime("-2 days"));
 $movies = $Movie->all(" where `sh`=1 && `ondate` between '$ondate' and '$today' ", "order by rank");
 foreach ($movies as $movie) {
 ?>
-    <option value="<?= $movie['id'] ?>"><?= $movie['name'] ?></option>
+    <option value="<?= $movie['id'] ?>" <?= ($_POST['id'] == $movie['id']) ? "selected" : "" ?>><?= $movie['name'] ?></option>
 <?php
 }

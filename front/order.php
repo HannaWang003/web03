@@ -1,3 +1,6 @@
+<?php
+$id=($_GET['id'])??0;
+?>
 <div class="ct mytitle">線上訂票</div>
 <br>
 <style>
@@ -49,10 +52,12 @@ td:nth-child(1) {
     <!-- api/booking -->
 </div>
 <script>
-getMovies();
+getMovies(<?=$id?>);
 
-function getMovies() {
-    $.post('./api/get_movies.php', (movies) => {
+function getMovies(id) {
+    $.post('./api/get_movies.php', {
+        id
+    }, (movies) => {
         $('#movies').html(movies);
         let movie = $('#movies').val();
         getDates(movie);

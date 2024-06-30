@@ -72,7 +72,8 @@ foreach ($ords as $ord) {
             <div>您選擇的場次是: <?= $date . " " . $session ?></div>
             <div>您已勾選<span id="tickets">0</span>張票，最多可購買四張票</div>
         </div>
-        <input type="button" value="上一步" onclick="$('#order,#booking').toggle()"> <input type="button" value="訂購">
+        <input type="button" value="上一步" onclick="$('#order,#booking').toggle()"> <input id="checkout" type="button"
+            value="訂購">
     </div>
 </div>
 <script>
@@ -89,5 +90,16 @@ $('.chk').on("change", function() {
         seats.splice(seats.indexOf($(this).val(), 1))
     }
     $('#tickets').text(seats.length);
+})
+$('#checkout').on('click', function() {
+    $.post('./api/checkout.php', {
+        movie: "<?= $movieName ?>",
+        date: "<?= $date ?>",
+        session: "<?= $session ?>",
+        qt: $('#tickets').text(),
+        seats
+    }, (no) => {
+        location.href = `index.php?do=checkout&no=${no}`;
+    })
 })
 </script>
