@@ -2,14 +2,14 @@
 $ords = $Order->all("order by no");
 ?>
 <style>
-    table {
-        width: 100%;
-        table-layout: fixed;
-    }
+table {
+    width: 100%;
+    table-layout: fixed;
+}
 
-    td {
-        text-align: center;
-    }
+td {
+    text-align: center;
+}
 </style>
 <div class="ct mytitle">訂單清單</div>
 <div>
@@ -38,24 +38,24 @@ $ords = $Order->all("order by no");
         foreach ($ords as $ord) {
             $seats = unserialize($ord['seats']);
         ?>
-            <tr>
-                <td><?= $ord['no'] ?></td>
-                <td><?= $ord['movie'] ?></td>
-                <td><?= $ord['date'] ?></td>
-                <td><?= $ord['session'] ?></td>
-                <td><?= $ord['qt'] ?></td>
-                <td><?php
+        <tr>
+            <td><?= $ord['no'] ?></td>
+            <td><?= $ord['movie'] ?></td>
+            <td><?= $ord['date'] ?></td>
+            <td><?= $ord['session'] ?></td>
+            <td><?= $ord['qt'] ?></td>
+            <td><?php
                     foreach ($seats as $seat) {
                         $col = ceil($seat / 5);
-                        $num = ($seat - 1) * 5 - 1;
+                        $num = ($seat - 1) % 5 + 1;
                     ?>
-                        <div><?= $col . "排" . $num . "號" ?></div>
-                    <?php
+                <div style="font-size:12px;"><?= $col . "排" . $num . "號" ?></div>
+                <?php
                     }
                     ?>
-                </td>
-                <td><input type="button" value="刪除" onclick="del(<?= $ord['id'] ?>,'order')"></td>
-            </tr>
+            </td>
+            <td><input type="button" value="刪除" onclick="del(<?= $ord['id'] ?>,'order')"></td>
+        </tr>
 
         <?php
         }
@@ -63,12 +63,12 @@ $ords = $Order->all("order by no");
     </table>
 </div>
 <script>
-    function del(id, table) {
-        $.post('./api/del.php', {
-            id,
-            table
-        }, () => {
-            location.reload();
-        })
-    }
+function del(id, table) {
+    $.post('./api/del.php', {
+        id,
+        table
+    }, () => {
+        location.reload();
+    })
+}
 </script>
