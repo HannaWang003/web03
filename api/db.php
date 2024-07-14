@@ -72,8 +72,8 @@ class DB
     {
         if (isset($ary['id'])) {
             $sql = "update `$this->table` set ";
-            $sql .= join(" , ", $this->a2s($ary));
-            $sql .= " `id`='{$ary['id']}'";
+            $sql .= join(",", $this->a2s($ary));
+            $sql .= "where `id`='{$ary['id']}'";
         } else {
             $sql = "insert into `$this->table` ";
             $col = "(`" . join("`,`", array_keys($ary)) . "`)";
@@ -117,4 +117,10 @@ $sess = [
     "3" => "18:00~20:00",
     "4" => "20:00~22:00",
     "5" => "22:00~24:00",
+];
+$level = [
+    "1" => "普通級",
+    "2" => "保護級",
+    "3" => "輔導級",
+    "4" => "限制級"
 ];
