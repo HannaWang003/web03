@@ -1,8 +1,7 @@
 <?php
 include_once "db.php";
 if ($Order->count(['orderdate' => date("Y-m-d")]) > 0) {
-    $max = (int)$Order->max('no');
-    echo $_POST['no'] = $max + 1;
+    echo $_POST['no'] = (int)$Order->max('no') + 1;
 } else {
     echo $_POST['no'] = date("Ymd") . "0001";
 }
