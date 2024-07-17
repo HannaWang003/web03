@@ -1,9 +1,11 @@
 <?php
 include_once "db.php";
-$now = $Movie->find($_GET['id']);
+$table = $_GET['table'];
+$DB = ${ucfirst($table)};
+$now = $DB->find($_GET['id']);
 $tmp = $now['rank'];
-$sw = $Movie->find($_GET['sw']);
+$sw = $DB->find($_GET['sw']);
 $now['rank'] = $sw['rank'];
 $sw['rank'] = $tmp;
-$Movie->save($now);
-$Movie->save($sw);
+$DB->save($now);
+$DB->save($sw);
