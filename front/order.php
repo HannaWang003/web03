@@ -19,36 +19,40 @@
     display: none;
 }
 </style>
-<div id="order">
-    <table>
-        <tr>
-            <td colspan="2">
-                <h3>線上訂票</h3>
-            </td>
-        </tr>
-        <tr>
-            <td style="width:40%;">電影 : </td>
-            <td style="width:60%;">
-                <select name="movie" id="movie" style="width:80%;"></select>
-            </td>
-        </tr>
-        <tr>
-            <td style="width:40%;">日期 : </td>
-            <td style="width:60%;">
-                <select name="date" id="date" style="width:80%"></select>
-            </td>
-        </tr>
-        <tr>
-            <td style="width:40%;">場次 : </td>
-            <td style="width:60%;">
-                <select name="session" id="session" style="width:80%"></select>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><button onclick="booking()">確認</button> <input type="reset" value="重置"></td>
-        </tr>
-    </table>
-</div>
+<form>
+    <div id="order">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <h3>線上訂票</h3>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:40%;">電影 : </td>
+                <td style="width:60%;">
+                    <select name="movie" id="movie" style="width:80%;"></select>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:40%;">日期 : </td>
+                <td style="width:60%;">
+                    <select name="date" id="date" style="width:80%"></select>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:40%;">場次 : </td>
+                <td style="width:60%;">
+                    <select name="session" id="session" style="width:80%"></select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" onclick="booking()" value="確認"> <input type="reset" value="重置">
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
 <div id="booking"></div>
 <script>
 let id = "<?= $_GET['id'] ?? 0 ?>";

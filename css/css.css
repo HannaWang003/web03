@@ -136,8 +136,9 @@ input:focus
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
-	min-height:100px;
+	height:450px;
 	padding:10px;
+	overflow:auto;
 }
 .ts
 {
