@@ -58,6 +58,31 @@
 .right {
     border-right-width: 0
 }
+
+#movies {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie {
+    width: 49%;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 5px auto;
+
+    div {
+        margin: 2px;
+    }
+}
+
+.movie>div:nth-child(1) {
+    display: flex;
+}
+
+.movie>div:nth-child(1)>div:nth-child(1) {
+    width: 45%;
+}
 </style>
 <div class="half" style="vertical-align:top;">
     <h1>預告片介紹</h1>
@@ -97,7 +122,34 @@
 <div class="half">
     <h1>院線片清單</h1>
     <div class="rb tab" style="width:95%;">
-
+        <div id="movies">
+            <?php
+            $today = date("Y-m-d");
+            $ondate = date("Y-m-d", strtotime("-2 days"));
+            $total = $Movie->count(" where `sh`=1 && `ondate` between '$ondate' and '$today'");
+            $div = 4;
+            $pages = ceil($total / $div);
+            $now = $_GET['p'] ?? 1;
+            $start = ($now - 1) * $div;
+            $movies = $Movie->all(" where `sh`=1 && `ondate` between '$ondate' and '$today'", "order by rank limit $start,$div");
+            foreach ($movies as $m) {
+            ?>
+            <div class="movie">
+                <div style="font-size:12px;">
+                    <div><img src="./img/<?= $m['poster'] ?>" style="width:100%;"></div>
+                    <div>
+                        <div style="font-size:16px;"><?= $m['name'] ?></div>
+                        <div>分級：<img src="./icon/03C0<?= $m['level'] ?>.png"
+                                style="width:15px;"><?= $lev[$m['level']] ?></div>
+                        <div>上映日期：<?= $m['ondate'] ?></div>
+                    </div>
+                </div>
+                <div class="ct"><button>劇情簡介</button> <button>線上訂票</button></div>
+            </div>
+            <?php
+            }
+            ?>
+        </div>
     </div>
     <div class="ct"> </div>
 </div>
