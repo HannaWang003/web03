@@ -1,5 +1,12 @@
 <?php
 include_once "./api/db.php";
+if (!empty($_POST)) {
+    if ($_POST['acc'] != "admin" || $_POST['pw'] != "1234") {
+        $error = "帳號或密碼錯誤";
+    } else {
+        $_SESSION['login'] = 1;
+    }
+}
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -27,24 +34,53 @@ include_once "./api/db.php";
             </marquee>
         </div>
         <div id="mm">
+            <?php
+            if (!isset($_SESSION['login'])) {
+            ?>
+            <h1 class="ct">管理登入</h1>
+            <form action="?" method="post">
+                <table style="margin:auto">
+                    <tr>
+                        <th>帳號</th>
+                        <td><input type="text" name="acc" id="acc"></td>
+                    </tr>
+                    <tr>
+                        <th>密碼</th>
+                        <td><input type="password" name="pw" id="pw"></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" style="color:red;text-align:end">
+                            <?= ($error) ?? "<span style='color:blue'>請登入</span>" ?></th>
+                    </tr>
+                </table>
+                <div class="ct"><button>登入</button></div>
+            </form>
+            <?php
+            } else {
+            ?>
             <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;"> <a
                     href="?do=title">網站標題管理</a>| <a href="?do=go">動態文字管理</a>| <a href="?do=poster">預告片海報管理</a>| <a
                     href="?do=movie">院線片管理</a>| <a href="?do=order">電影訂票管理</a> </div>
             <div class="rb tab">
                 <?php
-        $do = $_GET['do'] ?? "main";
-        $file = "./back/$do.php";
-        if (file_exists($file)) {
-          include $file;
-        } else {
-          include "./back/main.php";
-        }
+                    $do = $_GET['do'] ?? "main";
+                    $file = "./back/$do.php";
+                    if (file_exists($file)) {
+                        include $file;
+                    } else {
+                        include "./back/main.php";
+                    }
 
-        ?>
+                    ?>
             </div>
+
+            <?php
+            }
+            ?>
         </div>
         <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
     </div>
+
 </body>
 
 </html>

@@ -105,7 +105,7 @@ input:focus
 {
 	padding:10px;
 	height:500px;
-	overflow:auto;
+	overflow:hidden;
 }
 #bo
 {
