@@ -41,6 +41,9 @@ include_once "db.php";
     #info {
         padding: 10px;
 
+        b {
+            color: yellow;
+        }
     }
 </style>
 <div id="room">
@@ -64,3 +67,21 @@ include_once "db.php";
     <div>您已經勾選<b><span id="qt">0</span></b>張票, 最多可以購買四張票</div>
     <div class="ct"><button onclick="toggle(this)">上一步</button> <button onclcik="checkout()">訂購</button></div>
 </div>
+<script>
+    let seat = [];
+    $('.chk').on('change', function() {
+        if ($(this).prop("checked")) {
+            if (seat.length < 4) {
+                seat.push($(this).val());
+            } else {
+                alert("勾選數量已超過4張")
+                $(this).prop("checked", false);
+            }
+
+        } else {
+            seat.splice(seat.indexOf($(this).val()), 1);
+        }
+        console.log(seat)
+        $('#qt').text(seat.length)
+    })
+</script>
