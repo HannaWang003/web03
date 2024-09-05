@@ -41,10 +41,11 @@ input:focus
 }
 #main
 {
-	width:1022px;
-	min-height:766px;
+	width:1024px;
+	height:768px;
 	border:#000 1px solid;
 	margin:30px auto 10px auto;
+	padding:10px;
 }
 #top
 {
