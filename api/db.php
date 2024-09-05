@@ -129,8 +129,5 @@ if (isset($_GET['do'])) {
     if (isset(${$_GET['do']})) {
         $table = $_GET['do'];
         $DB = ${$table};
-    } else {
-        $table = "main";
-        $DB = ${$table};
     }
-};
+}
