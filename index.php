@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html
+﻿<?php
+include_once "./api/db.php";
+?>
+<!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0047)? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>影城</title>
     <link rel="stylesheet" href="./css/css.css">
-    <link href="./css/s2.css" rel="stylesheet" type="text/css">
+    <!-- <link href="./css/s2.css" rel="stylesheet" type="text/css"> -->
     <script src="./js/jquery-1.9.1.min.js"></script>
 </head>
 
@@ -24,28 +27,16 @@
             </marquee>
         </div>
         <div id="mm">
-            <div class="half" style="vertical-align:top;">
-                <h1>預告片介紹</h1>
-                <div class="rb tab" style="width:95%;">
-                    <div id="abgne-block-20111227">
-                        <ul class="lists">
-                        </ul>
-                        <ul class="controls">
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="half">
-                <h1>院線片清單</h1>
-                <div class="rb tab" style="width:95%;">
-                    <table>
-                        <tbody>
-                            <tr> </tr>
-                        </tbody>
-                    </table>
-                    <div class="ct"> </div>
-                </div>
-            </div>
+            <?php
+            $do = ($_GET['do']) ?? "main";
+            $file = "./front/$do.php";
+            if (file_exists($file)) {
+                include $file;
+            } else {
+                include "./front/main.php";
+            }
+
+            ?>
         </div>
         <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
     </div>
