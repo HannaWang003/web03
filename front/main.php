@@ -212,12 +212,14 @@
     <div class="rb tab" style="width:95%;">
         <div id="movie">
             <?php
-            $total = $Movie->count(['sh' => 1]);
+            $date = date("Y-m-d");
+            $ondate = date("Y-m-d", strtotime("-2 days"));
+            $total = $Movie->count("where sh='1' && ondate between '$ondate' AND '$date'");
             $div = 4;
             $pages = ceil($total / $div);
             $now = ($_GET['p']) ?? 1;
             $start = ($now - 1) * $div;
-            $movies = $Movie->all(['sh' => 1], "order by `rank` limit $start,$div");
+            $movies = $Movie->all("where sh='1' && ondate between '$ondate' AND '$date' order by `rank` limit $start,$div");
             foreach ($movies as $movie) {
             ?>
             <div class="movie">
