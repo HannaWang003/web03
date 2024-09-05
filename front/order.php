@@ -10,10 +10,7 @@ if (isset($_GET['id'])) {
         <tr>
             <th class="rb">電影:</th>
             <td width="80%">
-                <select name="movie" id="movie" style="width:100%">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                </select>
+                <select name="movie" id="movie" style="width:100%"></select>
             </td>
         </tr>
         <tr>
@@ -44,7 +41,46 @@ if (isset($_GET['id'])) {
 </div>
 <script>
     $('.booking').on('click', function() {
-        $('#order').toggle();
-        $('#booking').toggle();
+        if ($('#session').val() == 0) {
+            $('#order').show();
+            $('#booking').hide();
+        } else {
+            $('#order').toggle();
+            $('#booking').toggle();
+        }
+    })
+    getMovie(<?= $se ?>)
+
+    function getMovie(movie) {
+        $.get('./api/getMovie.php', {
+            movie
+        }, (res) => {
+            $('#movie').html(res)
+            getDate($('#movie').val())
+        })
+    }
+
+    function getDate(movie) {
+        $.get('./api/getDate.php', {
+            movie
+        }, (res) => {
+            $('#date').html(res)
+            getSess($('#movie').val(), $('#date').val())
+        })
+    }
+
+    function getSess(movie, date) {
+        $.get('./api/getSess.php', {
+            movie,
+            date
+        }, (res) => {
+            $('#session').html(res)
+        })
+    }
+    $('#movie').on('change', function() {
+        getDate($(this).val())
+    })
+    $('#date').on('change', function() {
+        getSess($('#movie').val(), $(this).val())
     })
 </script>
