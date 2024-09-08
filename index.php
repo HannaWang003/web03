@@ -20,13 +20,13 @@ include_once "./api/db.php";
             <h1>ABC影城</h1>
         </div>
         <div id="top2"> <a href="index.php">首頁</a> <a href="?do=order">線上訂票</a> <a href="#">會員系統</a> <a
-                href="back.php">管理系統</a> </div>
+                href="?do=login">管理系統</a> </div>
         <div id="text"> <span class="ct">最新活動</span>
             <marquee direction="right">
                 ABC影城票價全面八折優惠1個月
             </marquee>
         </div>
-        <div id="mm">
+        <div id="mm" style="overflow:auto;">
             <?php
             $do = ($_GET['do']) ?? "main";
             $file = "./front/$do.php";

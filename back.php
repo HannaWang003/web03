@@ -1,3 +1,9 @@
+<?php
+include_once "./api/db.php";
+if (!isset($_SESSION['login'])) {
+    to("index.php?do=login");
+}
+?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0055)?do=admin -->
@@ -17,7 +23,7 @@
             <h1>ABC影城</h1>
         </div>
         <div id="top2"> <a href="index.php">首頁</a> <a href="index.php?do=order">線上訂票</a> <a href="#">會員系統</a> <a
-                href="back.php">管理系統</a> </div>
+                href="index.php?do=login">管理系統</a> </div>
         <div id="text"> <span class="ct">最新活動</span>
             <marquee direction="right">
                 ABC影城票價全面八折優惠1個月
@@ -27,17 +33,17 @@
             <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;"> <a
                     href="?do=tit">網站標題管理</a>| <a href="?do=go">動態文字管理</a>| <a href="?do=poster">預告片海報管理</a>| <a
                     href="?do=movie">院線片管理</a>| <a href="?do=order">電影訂票管理</a> </div>
-            <div class="rb tab">
+            <div class="rb tab" style="overflow:auto;">
                 <?php
-$do=($_GET['do'])??"main";
-$file="./back/$do.php";
-if(file_exists($file)){
-  include $file;
-}else{
-  include "./back/main.php";
-}
+                $do = ($_GET['do']) ?? "main";
+                $file = "./back/$do.php";
+                if (file_exists($file)) {
+                    include $file;
+                } else {
+                    include "./back/main.php";
+                }
 
-?>
+                ?>
             </div>
         </div>
         <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>

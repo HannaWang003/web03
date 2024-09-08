@@ -1,11 +1,11 @@
 <?php
 include_once "db.php";
-$_POST['orderdate'] = date("Y-m-d");
-$max = $Order->max('no', ['orderdate' => date("Y-m-d")]);
+$now = date("Ymd");
+$max = $Order->max('no', "where no LIKE '$now%'");
 if ($max != "") {
-    $_POST['no'] = $max + 1;
+    echo $_POST['no'] = $max + 1;
 } else {
-    $_POST['no'] = date("Ymd") . "0001";
+    echo $_POST['no'] = date("Ymd") . "0001";
 }
 $_POST['seats'] = serialize($_POST['seats']);
 $Order->save($_POST);
