@@ -126,8 +126,8 @@ $sess = [
 ];
 //小功能
 if (isset($_GET['do'])) {
-    if (isset(${$_GET['do']})) {
+    if (isset(${ucfirst($_GET['do'])})) {
         $table = $_GET['do'];
-        $DB = ${$table};
+        $DB = ${ucfirst($table)};
     }
 }
