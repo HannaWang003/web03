@@ -1,3 +1,11 @@
 <?php
 include_once "db.php";
-echo $Order->sum('qt', ['movie' => "院線片3", 'date' => "2024-09-06", 'session' => "20:00~22:00"]);
+$test = [
+    'no' => 2024,
+    'movie' => 'text',
+    'date' => '2024-03-06',
+    'session' => '14:00~16:00',
+    'qt' => 4
+];
+$test['seats'] = [1, 2, 3, 4];
+$Order->save($test);
