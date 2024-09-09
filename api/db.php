@@ -14,7 +14,7 @@ function to($url)
 class DB
 {
     protected $table;
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db_03";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db03";
     protected $pdo;
     function __construct($table)
     {

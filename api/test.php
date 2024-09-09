@@ -7,5 +7,5 @@ $test = [
     'session' => '14:00~16:00',
     'qt' => 4
 ];
-$test['seats'] = [1, 2, 3, 4];
+$test['seat'] = serialize(["1", "2", "3", "4"]);
 $Order->save($test);

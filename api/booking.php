@@ -7,5 +7,5 @@ if ($max != "") {
 } else {
     echo $_POST['no'] = date("Ymd") . "0001";
 }
-$_POST['seats'] = serialize($_POST['seats']);
+$_POST['seat'] = serialize($_POST['seat']);
 $Order->save($_POST);

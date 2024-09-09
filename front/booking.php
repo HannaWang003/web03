@@ -3,10 +3,10 @@ include_once "./api/db.php";
 $row = $Order->find(['no' => $_GET['no']]);
 ?>
 <style>
-table,
-td {
-    border: 1px solid #000;
-}
+    table,
+    td {
+        border: 1px solid #000;
+    }
 </style>
 <table style="width:60%;margin:auto;border:1px solid #000;">
     <tr>
@@ -27,12 +27,12 @@ td {
     <tr>
         <td colspan="2">
             <?php
-            $seats = unserialize($row['seats']);
+            $seats = unserialize($row['seat']);
             foreach ($seats as $seat) {
                 $col = floor(($seat - 1) / 5) + 1;
                 $num = ($seat - 1) % 5 + 1;
             ?>
-            <div><?= $col . "排" . $num . "號" ?></div>
+                <div><?= $col . "排" . $num . "號" ?></div>
             <?php
             }
             ?>

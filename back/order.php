@@ -7,7 +7,7 @@
             $movies = $Order->all("group by movie");
             foreach ($movies as $movie) {
             ?>
-            <option value="<?= $movie['movie'] ?>"><?= $movie['movie'] ?></option>
+                <option value="<?= $movie['movie'] ?>"><?= $movie['movie'] ?></option>
             <?php
             }
             ?>
@@ -16,10 +16,10 @@
     </form>
 </div>
 <style>
-th,
-td {
-    padding: 5px 10px
-}
+    th,
+    td {
+        padding: 5px 10px
+    }
 </style>
 <table style="margin:auto">
     <tr class="rb">
@@ -34,26 +34,26 @@ td {
     <?php
     $rows = $Order->all();
     foreach ($rows as $row) {
-        $seats = unserialize($row['seats']);
+        $seats = unserialize($row['seat']);
     ?>
-    <tr class="rb">
-        <td><?= $row['no'] ?></td>
-        <td><?= $row['movie'] ?></td>
-        <td><?= $row['date'] ?></td>
-        <td><?= $row['session'] ?></td>
-        <td><?= $row['qt'] ?></td>
-        <td><?php
+        <tr class="rb">
+            <td><?= $row['no'] ?></td>
+            <td><?= $row['movie'] ?></td>
+            <td><?= $row['date'] ?></td>
+            <td><?= $row['session'] ?></td>
+            <td><?= $row['qt'] ?></td>
+            <td><?php
                 foreach ($seats as $seat) {
                     $col = floor($seat / 5) + 1;
                     $val = ($seat - 1) % 5 + 1;
                 ?>
-            <div><?= $col . "排" . $val . "號" ?></div>
-            <?php
+                    <div><?= $col . "排" . $val . "號" ?></div>
+                <?php
                 }
                 ?>
-        </td>
-        <td><button onclick="location.href='./api/del_movie.php?id=<?= $row['id'] ?>'">刪除</button></td>
-    </tr>
+            </td>
+            <td><button onclick="location.href='./api/del_movie.php?id=<?= $row['id'] ?>'">刪除</button></td>
+        </tr>
     <?php
     }
     ?>
