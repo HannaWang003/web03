@@ -26,6 +26,7 @@
     }
 }
             </style>
+            <div class="ct wx">新增院線片</div>
             <form action="./api/add_movie.php?do=movie" enctype="multipart/form-data" method="post">
                 <div id="addmovie">
                     <div>影片資訊:</div>

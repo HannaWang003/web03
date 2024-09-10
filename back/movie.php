@@ -31,8 +31,8 @@ table {
                     <input type="button" name="sh" onclick="sh(<?= $row['id'] ?>,<?= $row['sh'] ?>)"
                         value="<?= ($row['sh'] == 1) ? "顯示" : "隱藏" ?>">
                     <input type="button" name="del" onclick="del(<?= $row['id'] ?>,<?= $row['sh'] ?>)" value="刪除電影">
-                    <input type="button" name="del"
-                        onclick="location.href='?do=edit_movie?do=movie&id=<?= $row['id'] ?>'" value="編輯電影">
+                    <input type="button" name="del" onclick="location.href='?do=edit_movie&id=<?= $row['id'] ?>'"
+                        value="編輯電影">
                 </div>
                 <div>
                     劇情簡介:<?= $row['intro'] ?>
