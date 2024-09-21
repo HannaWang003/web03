@@ -1,14 +1,15 @@
 <?php
-include_once "db.php";
-function to($url)
-{
-    header("location:$url");
-}
+date_default_timezone_set("Asia/Taipei");
+session_start();
 function dd($ary)
 {
     echo "<pre>";
     print_r($ary);
     echo "</pre>";
+}
+function to($url)
+{
+    header("location:$url");
 }
 class DB
 {
@@ -30,7 +31,7 @@ class DB
     private function sql_all($sql, $where, $other)
     {
         if (is_array($where)) {
-            $sql .= join(" && ", $this->a2s($where));
+            $sql .= " where " . join(" && ", $this->a2s($where));
         } else {
             $sql .= " $where ";
         }
@@ -116,3 +117,17 @@ if (isset($_GET['do'])) {
         $DB = ${ucfirst($table)};
     }
 }
+
+$session = [
+    "14:00~16:00",
+    "16:00~18:00",
+    "18:00~20:00",
+    "20:00~22:00",
+    "22:00~24:00",
+];
+$level = [
+    1 => "普遍級",
+    2 => "保護級",
+    3 => "輔導級",
+    4 => "限制級"
+];
