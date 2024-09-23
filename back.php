@@ -1,5 +1,13 @@
 <?php
 include_once "./api/db.php";
+if (isset($_POST['acc'], $_POST['pw'])) {
+  if ($_POST['acc'] == "admin" && $_POST['pw'] == "1234") {
+    $_SESSION['login'] = $_POST['acc'];
+    to("back.php");
+  } else {
+    $error = "帳號或密碼錯誤";
+  }
+}
 ?>
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,13 +36,6 @@ include_once "./api/db.php";
     </div>
     <div id="mm">
       <?php
-      if (isset($_POST['acc'], $_POST['pw'])) {
-        if ($_POST['acc'] == "admin" && $_POST['pw'] == "1234") {
-          $_SESSION['login'] = $_POST['acc'];
-        } else {
-          $error = "帳號或密碼錯誤";
-        }
-      }
       if (!isset($_SESSION['login'])) {
       ?>
         <h2 class="ct">管理登入</h2>

@@ -94,7 +94,7 @@ class DB
     }
     function del($id)
     {
-        $sql = "delete * from `$this->table` where ";
+        $sql = "delete from `$this->table` where ";
         if (is_array($id)) {
             $sql .= join(" && ", $this->a2s($id));
         } elseif (is_numeric($id)) {
