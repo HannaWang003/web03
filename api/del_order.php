@@ -13,4 +13,4 @@ if (isset($_POST['type'])) {
     }
 }
 $DB->del($_POST);
-to("../back.php?do=order");
+to("../back.php?do=$table");

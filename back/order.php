@@ -15,7 +15,7 @@
                     $orders = $Order->all();
                     foreach ($orders as $ord) {
                     ?>
-                        <option value="<?= $ord['movie'] ?>"><?= $ord['movie'] ?></option>
+                    <option value="<?= $ord['movie'] ?>"><?= $ord['movie'] ?></option>
                     <?php
                     }
                     ?>
@@ -37,34 +37,34 @@
     foreach ($orders as $ord) {
         $seats = unserialize($ord['seats']);
     ?>
-        <tr>
-            <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['no'] ?></td>
-            <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['movie'] ?></td>
-            <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['date'] ?></td>
-            <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['session'] ?></td>
-            <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['qt'] ?></td>
-            <td class="ct" style="border-bottom:1px solid #aaa;">
-                <?php
+    <tr>
+        <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['no'] ?></td>
+        <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['movie'] ?></td>
+        <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['date'] ?></td>
+        <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['session'] ?></td>
+        <td class="ct" style="border-bottom:1px solid #aaa;"><?= $ord['qt'] ?></td>
+        <td class="ct" style="border-bottom:1px solid #aaa;">
+            <?php
                 foreach ($seats as $seat) {
                     $col = ceil($seat / 5);
                     $num = ($seat - 1) % 5 + 1;
                     echo "<div>{$col}排{$num}號</div>";
                 }
                 ?>
-            </td>
-            <td class="ct" style="border-bottom:1px solid #aaa;"><button onclick="del(<?= $ord['id'] ?>)">刪除</button>
-            </td>
-        </tr>
+        </td>
+        <td class="ct" style="border-bottom:1px solid #aaa;"><button onclick="del(<?= $ord['id'] ?>)">刪除</button>
+        </td>
+    </tr>
     <?php
     }
     ?>
 </table>
 <script>
-    function del(id) {
-        $.post('./api/del_order.php?do=order', {
-            id
-        }, () => {
-            location.reload();
-        })
-    }
+function del(id) {
+    $.post('./api/del_order.php?do=order', {
+        id
+    }, () => {
+        location.reload();
+    })
+}
 </script>
