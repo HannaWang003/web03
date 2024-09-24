@@ -5,6 +5,10 @@ body
 	background:url(../icon/b.png);
 	font-family:微軟正黑體;
 }
+a{
+	color:#aaa;
+	text-decoration:none;
+}
 select,select option
 {
 	padding:5px;
@@ -131,6 +135,12 @@ input:focus
 {
 	background:rgba(39,39,39,0.7);
 	color:rgba(255,255,255,0.9);
+}
+.ra
+{
+	background:rgba(223, 223, 223, 0.7);
+	color:rgba(0, 0, 0, 0.9);
+	border:1px solid #333;
 }
 .tab
 {
