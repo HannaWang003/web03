@@ -26,6 +26,15 @@ $total = $DB->count();
                         onclick="sw(<?= $row['id'] ?>,<?= ($idx == $total - 1) ? $row['id'] : $rows[$idx + 1]['id'] ?>)">往下</button>
                 </th>
                 <th style="border-bottom:1px solid #333">
+                    <select name="ani[]" id="">
+                        <?php
+                            for ($i = 1; $i <= 3; $i++) {
+                            ?>
+                        <option value="<?= $i ?>" <?=($i==$row['ani'])?"selected":""?>><?= $ani[$i] ?></option>
+                        <?php
+                            }
+                            ?>
+                    </select>
                     <input type="checkbox" name="sh[]" value="<?= $row['id'] ?>"
                         <?= ($row['sh'] == 1) ? "checked" : "" ?>>顯示
                     <input type="checkbox" name="del[]" value="<?= $row['id'] ?>">刪除
@@ -55,11 +64,11 @@ $total = $DB->count();
 </form>
 <script>
 function sw(id, sw) {
-    $.post('./api/sw.php?do=<?=$table?>', {
+    $.post('./api/sw.php?do=<?= $table ?>', {
         id,
         sw
     }, () => {
-        locaiton.reload();
+        location.reload();
     })
 }
 </script>
