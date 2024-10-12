@@ -20,7 +20,7 @@ include_once "./api/db.php";
             <h1>ABC影城</h1>
         </div>
         <div id="top2"> <a href="index.php">首頁</a> <a href="?do=order">線上訂票</a> <a href="#">會員系統</a> <a
-                href="back.php">管理系統</a> </div>
+                href="back.php?do=login">管理系統</a> </div>
         <div id="text"> <span class="ct">最新活動</span>
             <marquee direction="right">
                 ABC影城票價全面八折優惠1個月
@@ -28,15 +28,15 @@ include_once "./api/db.php";
         </div>
         <div id="mm">
             <?php
-      $do = ($_GET['do']) ?? "main";
-      $file = "./front/$do.php";
-      if (file_exists($file)) {
-        $DB = (${ucfirst($do)}) ?? "";
-        include $file;
-      } else {
-        include "./front/main.php";
-      }
-      ?>
+            $do = ($_GET['do']) ?? "main";
+            $file = "./front/$do.php";
+            if (file_exists($file)) {
+                $DB = (${ucfirst($do)}) ?? "";
+                include $file;
+            } else {
+                include "./front/main.php";
+            }
+            ?>
         </div>
         <div id="bo"> ©Copyright 2024 ABC影城 版權所有 </div>
     </div>
