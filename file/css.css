@@ -5,13 +5,15 @@ body
 	background:url(../icon/b.png);
 	font-family:微軟正黑體;
 }
+a{
+	text-decoration:none;
+}
 select,select option
 {
 	padding:5px;
 }
 input[type='text'],input[type='file'],input[type='password'],textarea,.button
 {
-	width:200px;
 	font-size:16px;
 	padding:7px 5px 7px 5px;
 	background:#4C4C4C;
@@ -22,14 +24,16 @@ input[type='text'],input[type='file'],input[type='password'],textarea,.button
 }
 input[type='button'],input[type='submit'],input[type='reset'],button,.button
 {
-	min-width:70px;
-	min-height:40px;
+	min-width:20px;
+	min-height:10px;
 	background:#000;
 	color:#fff;
 	border:none;
 	cursor:pointer;
 	font-size:18px;
 	text-decoration:none;
+	padding:5px 10px;
+	margin:5px 5px;
 }
 input[type='button']:hover,input[type='submit']:hover,input[type='reset']:hover,button:hover,.button:hover
 {
