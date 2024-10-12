@@ -107,9 +107,9 @@ class DB
         return $tmp;
     }
 }
-$Poster = new DB('poster');
-$Movie = new DB('movie');
-$Order = new DB('orders');
+$Poster = new DB('poster'); //id,name,img,ani,rank,sh
+$Movie = new DB('movie'); //id,name,ondate,length,level,publish,director,poster,trailer,intro,rank,sh,
+$Order = new DB('orders'); //id,no(date("Ymd")+0001),movie,date,session,qt,seats,
 
 $sess = [
     "14:00-16:00",
