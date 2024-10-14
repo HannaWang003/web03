@@ -33,7 +33,7 @@ if (isset($_POST['acc'], $_POST['pw'])) {
         ABC影城票價全面八折優惠1個月
       </marquee>
     </div>
-    <div id="mm">
+    <div id="mm" style="display:none">
       <?php
       if (!isset($_SESSION['login'])) {
       ?>
@@ -96,6 +96,11 @@ if (isset($_POST['acc'], $_POST['pw'])) {
     </div>
     <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
   </div>
+  <script>
+    $(document).ready(function() {
+      $('#mm').fadeIn(1000)
+    })
+  </script>
 </body>
 
 </html>
