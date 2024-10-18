@@ -29,6 +29,7 @@
         overflow: hidden;
 
         .btn {
+            display: none;
             width: 90px;
             height: 100%;
             flex-shrink: 0;
@@ -97,6 +98,7 @@
 </div>
 <script>
     $('.item').eq(0).show(1000);
+    $('.btn').slideDown(1000);
     let now = 0;
     let next = 0;
     let p = 0;
