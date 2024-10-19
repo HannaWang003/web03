@@ -3,13 +3,19 @@
         width: 200px;
         height: 240px;
         margin: 10px auto;
-        background: #0fe2;
+        background: linear-gradient(#0fe2, #fff8);
         padding: 10px;
+        border-radius: 2px;
     }
 
     .item {
         width: 100%;
         display: none;
+
+        p {
+            box-shadow: 0px 2px 5px #333;
+            padding: 2px;
+        }
     }
 
     #controls {
@@ -162,14 +168,76 @@
         });
     })
 </script>
+<style>
+    #movie {
+        width: 48%;
+        margin: 0.5%;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        padding: 5px;
+        background: linear-gradient(#0fe2, #0002);
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 5px;
+        box-shadow: inset 0 0 10px #333;
+
+        >div {
+            margin: 0.5%;
+        }
+
+        >div:nth-child(1) {
+            width: 43%;
+        }
+
+        >div:nth-child(2) {
+            width: 43%;
+
+            >div:nth-child(2) {
+                font-size: 12px;
+            }
+
+            >div:nth-child(3) {
+                font-size: 12px;
+            }
+        }
+    }
+</style>
 <div class="half">
     <h1>院線片清單</h1>
-    <div class="rb tab" style="width:95%;">
-        <table>
-            <tbody>
-                <tr> </tr>
-            </tbody>
-        </table>
-        <div class="ct"> </div>
+    <div class="rb tab" style="width:95%;display:flex;flex-wrap:wrap;">
+        <?php
+        $today = date("Y-m-d");
+        $div = 4;
+        $now = ($_GET['p']) ?? 1;
+        $d = $Movie->date($today);
+        $p = $Movie->page($div, $now, "where `sh`=1 && `ondate` between '2024-10-17' and '$today' ");
+        $ms = $Movie->all("where `sh`=1 && `ondate` between '{$d['ago']}' and '$today' ", "order by rank limit {$p['start']},$div");
+        foreach ($ms as $m) {
+        ?>
+            <div id="movie">
+                <div><img src="./img/<?= $m['poster'] ?>" style="width:90%;border:5px solid #000;"></div>
+                <div>
+                    <div><?= $m['name'] ?></div>
+                    <div>分級: <img src="./icon/03C0<?= $m['level'] ?>.png" style="width:20px;"><?= $level[$m['level']] ?></div>
+                    <div>上映日期 : <?= $m['ondate'] ?></div>
+                </div>
+                <div style="width:100%"><a href="?do=intro&id=<?= $m['id'] ?>"><button>劇情簡介</button></a><a href="?do=order&id=<?= $m['id'] ?>"><button>線上訂票</button></a></div>
+            </div>
+        <?php
+        }
+        ?>
+
+        <div class="ct" style="width:100%">
+            <a href="?p=<?= $p['prev'] ?>"><button>上一頁</button></a>
+            <?php
+            for ($i = 1; $i <= $p['pages']; $i++) {
+                $style = ($now == $i) ? "font-size:30px" : "";
+            ?>
+                <a href="?p=<?= $i ?>" style="<?= $style ?>"><?= $i ?></a>
+            <?php
+            }
+            ?>
+            <a href="?p=<?= $p['next'] ?>"><button>下一頁</button></a>
+        </div>
     </div>
 </div>

@@ -5,6 +5,12 @@ body
 	background:url(../icon/b.png);
 	font-family:微軟正黑體;
 }
+a{
+	text-decoration:none;
+	display:inline-block;
+	margin:5px;
+	color:#fff;
+}
 select,select option
 {
 	padding:5px;
@@ -41,8 +47,9 @@ input:focus
 }
 #main
 {
-	width:1022px;
-	min-height:766px;
+	width:1024px;
+	height:768px;
+	padding:10px;
 	border:#000 1px solid;
 	margin:30px auto 10px auto;
 }
@@ -103,7 +110,9 @@ input:focus
 #mm
 {
 	padding:10px;
-	min-height:520px;
+	height:500px;
+	background:linear-gradient(#fff,#333);
+	overflow-y:auto;
 }
 #bo
 {

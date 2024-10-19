@@ -52,6 +52,10 @@ class DB
     {
         return $this->math("max", $col, $where, $other);
     }
+    function min($col, $where = "", $other = "")
+    {
+        return $this->math("min", $col, $where, $other);
+    }
     function count($where = "", $other = "")
     {
         $sql = "select count(*) from `$this->table` ";
@@ -107,10 +111,19 @@ class DB
         $p['next'] = ($now == $p['pages']) ? $now : $now + 1;
         return $p;
     }
+    function date($ondate = "")
+    {
+        $todays = strtotime(date("Ymd"));
+        $ondates = strtotime($ondate);
+        $ends = strtotime("+2 days", $ondates);
+        $d['ago'] = date("Y-m-d", strtotime("-2 days"));
+        $d['diff'] = ($ends - $todays) / (60 * 60 * 24);
+        return $d;
+    }
 }
 $Poster = new DB('poster');
 $Movie = new DB('movie');
-$Order = new DB('order');
+$Order = new DB('orders');
 
 $level = [
     1 => "普遍級",
